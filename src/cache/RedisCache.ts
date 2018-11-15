@@ -1,7 +1,7 @@
 import { Redis } from 'ioredis';
 import { redisCreate } from './redis/RedisCreate';
 import { RedisValue, RedisKeyOpts, convertToJson, convertToString } from './redis/RedisUtils';
-import { CacheConfiguration, cacheLogger as logger } from '../cache';
+import { CacheConfiguration, cacheLogger as logger } from '.';
 
 export class RedisCache {
     public client: Redis;

@@ -1,5 +1,5 @@
 import * as Redis from 'ioredis';
-import { cacheLogger as logger } from '../../cache';
+import { cacheLogger as logger } from '..';
 
 console.log('Using logger: ', logger);
 export function showNoConfigWarn() {
