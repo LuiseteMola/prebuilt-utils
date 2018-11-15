@@ -1,5 +1,5 @@
 import { Pool, Notification, QueryResult, types } from 'pg';
-import { dbLogger as logger, DbConfiguration } from '../db';
+import { dbLogger as logger, DbConfiguration } from '.';
 import * as knex from 'knex';
 import { Logger } from '../logger';
 import { PGQuerySQLReturn, PGQueryBuilder, PGQueryParameters, TransactionClient } from './pg/types';

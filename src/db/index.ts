@@ -1,5 +1,5 @@
-import { logger as defaultLogger, Logger } from './logger';
-import { Postgres } from './db/pg';
+import { logger as defaultLogger, Logger } from '../logger';
+import { Postgres } from './pg';
 
 /** Sets middleware function to use as database connector. Currently only supports postgres */
 export type dbConnector = 'postgres';
@@ -23,5 +23,6 @@ export function dbConfigure (connector: dbConnector = 'postgres', conf: DbConfig
         case 'postgres': db = new Postgres(conf);
     }
 }
+
 export let db: Postgres;
 export let dbLogger: Logger;
