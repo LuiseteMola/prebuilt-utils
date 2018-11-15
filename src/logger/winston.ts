@@ -9,23 +9,21 @@ function getLogLevel (level?: string) {
     return 'debug';
 }
 
-function loggerOptions (opts: LoggerOptions = {}) {
+function loggerOptions (opts: LoggerOptions = {}, label?: string) {
     if (!opts.level) opts.level = getLogLevel();
-    if (!opts.format) opts.format = winstonFormats.defaultFormat;
+    if (!opts.format) opts.format = winstonFormats.defaultFormat({label: label});
     if (!opts.transports) opts.transports = [new transports.Console()];
     return opts;
 }
 
-export function createNamespace (name: string, opts?: LoggerOptions) {
-    const logger = winston.loggers.add(name, loggerOptions(opts));
-    logger.info(`Logger enabled. LOG_LEVEL = ${getLogLevel(opts.level)}`);
+export function createNamespace (name: string, opts?: LoggerOptions): Logger {
+    const logger = winston.loggers.add(name, loggerOptions(opts, name));
+    logger.info(`Logger "${name}" enabled. LOG_LEVEL = ${getLogLevel(opts.level)}`);
+    return logger;
     //    return winston.loggers.add(name, loggerOptions(opts));
 }
 
-function createDefaultLogger () {
-    return winston.createLogger(loggerOptions());
-}
-
-export const logger = createDefaultLogger();
+// Default logger creation
+export const logger = winston.createLogger(loggerOptions());
 
 export type Logger = winston.Logger;
